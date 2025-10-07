@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e73a33676e2d84f8bdc5f7a8cd3a79, type: 3}
+  m_Name: HistoryRoom
+  m_EditorClassIdentifier: 
+  roomId: History
+  baseRoomPrefab: {fileID: 2330326202778568919, guid: 670de1907a4fe4d4ca15fd48404ff269, type: 3}
+  skipProbability: 0.2
+  obstacleDensityByX:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.4
+      inSlope: 0
+      outSlope: 0.29999998
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.7
+      inSlope: 0.29999998
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  floorObstacles:
+  - prefab: {fileID: 909262927134090740, guid: 212b6b3fd1ca4424aa3c17497f11e845, type: 3}
+    weight: 0.5
+  - prefab: {fileID: 909262927134090740, guid: 921517e9e9cae484f875633b6a4f84c7, type: 3}
+    weight: 0.2
+  ceilingObstacles:
+  - prefab: {fileID: 2836979755154138272, guid: a3ce538c854598145aee5446357898db, type: 3}
+    weight: 0.7
+  - prefab: {fileID: 2836979755154138272, guid: 6707ab731ab48434fb5efe2c1d56e2b6, type: 3}
+    weight: 0.3
+  decor:
+  - prefab: {fileID: 5193241459856021367, guid: e5e8e07bffa609240b27be2effd57b25, type: 3}
+    weight: 0.3
+  - prefab: {fileID: 5193241459856021367, guid: 4ceb4c48a7689ea4c9f0f8937aeae4ce, type: 3}
+    weight: 0.3
+  - prefab: {fileID: 5193241459856021367, guid: bd8b5d2b07d308446bfab2f8198fcbcc, type: 3}
+    weight: 0.3

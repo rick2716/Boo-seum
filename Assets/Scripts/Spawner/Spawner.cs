@@ -12,14 +12,20 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private SpawnPoint[] spawnPoints;
     [SerializeField] private int poolSize = 10;
-    [SerializeField] private float spawnInterval = 2f;
-    [SerializeField] private float objectSpeed = 5f;
+    [SerializeField] private float increasingSpawnInterval;
+    public float spawnInterval = 2f;
+    [Range(0, 1)] public float spawnIntervalFactor = 0.1f;
+    [SerializeField] private float increasingObjectSpeed;
+    public float objectSpeed = 5f;
+    [Range(0, 1)] public float objectSpeedFactor = 0.2f;
 
     private List<GameObject> pool = new List<GameObject>();
+    private float timeAlive;
     private float timer;
 
     void Start()
     {
+        ResetFactors();
         for (int i = 0; i < poolSize; i++)
         {
             SpawnPoint randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
@@ -34,12 +40,27 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        timeAlive += Time.deltaTime;
 
-        if (timer >= spawnInterval)
+        if (timer >= increasingSpawnInterval)
         {
+            CalculateIncreasingSpeed();
             SpawnFromPool();
             timer = 0f;
         }
+    }
+
+    private void CalculateIncreasingSpeed()
+    {
+        increasingObjectSpeed = objectSpeed * Mathf.Pow(timeAlive, objectSpeedFactor);
+        increasingSpawnInterval = spawnInterval / Mathf.Pow(timeAlive, spawnIntervalFactor);
+    }
+
+    private void ResetFactors()
+    {
+        timeAlive = 1f;
+        increasingObjectSpeed = objectSpeed;
+        increasingSpawnInterval = spawnInterval;
     }
 
     private void SpawnFromPool()
@@ -54,7 +75,7 @@ public class Spawner : MonoBehaviour
                 obj.SetActive(true);
 
                 Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-                rb.linearVelocity = Vector2.left * objectSpeed;
+                rb.linearVelocity = Vector2.left * increasingObjectSpeed;
                 break;
             }
         }
